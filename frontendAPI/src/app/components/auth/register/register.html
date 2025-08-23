@@ -1,0 +1,172 @@
+<div class="register-page">
+  <!-- Container principal -->
+  <div class="register-container">
+    <!-- En-tête avec logo -->
+    <div class="register-header">
+      <div class="logo-container">
+        <mat-icon class="logo-icon" color="primary">code</mat-icon>
+        <h1 class="company-name">Hahn Software</h1>
+      </div>
+      <p class="welcome-text">Créez votre compte</p>
+    </div>
+
+    <!-- Formulaire d'inscription -->
+    <form (ngSubmit)="register()" #registerForm="ngForm" class="register-form">
+      
+      <!-- Champ Nom complet -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nom complet</mat-label>
+        <input
+          matInput
+          type="text"
+          id="fullName"
+          name="fullName"
+          [(ngModel)]="userData.fullName"
+          required
+          #fullNameInput="ngModel"
+          placeholder="Votre nom complet"
+        />
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error *ngIf="fullNameInput.invalid && fullNameInput.touched">
+          Le nom complet est requis
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Champ Email -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Adresse email</mat-label>
+        <input
+          matInput
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="userData.email"
+          required
+          email
+          #emailInput="ngModel"
+          placeholder="votre@email.com"
+        />
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="emailInput.invalid && emailInput.touched">
+          <span *ngIf="emailInput.errors?.['required']">L'email est requis</span>
+          <span *ngIf="emailInput.errors?.['email']">Format d'email invalide</span>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Champ Mot de passe -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Mot de passe</mat-label>
+        <input
+          matInput
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="userData.password"
+          required
+          minlength="6"
+          #passwordInput="ngModel"
+          placeholder="Créez un mot de passe"
+        />
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-error *ngIf="passwordInput.invalid && passwordInput.touched">
+          <span *ngIf="passwordInput.errors?.['required']">Le mot de passe est requis</span>
+          <span *ngIf="passwordInput.errors?.['minlength']">Minimum 6 caractères</span>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Champ Rôle -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Rôle</mat-label>
+        <mat-select
+          id="role"
+          name="role"
+          [(ngModel)]="userData.role"
+          required
+          #roleInput="ngModel"
+        >
+          <mat-option value="user">
+            <mat-icon>person</mat-icon>
+            Utilisateur
+          </mat-option>
+          <mat-option value="admin">
+            <mat-icon>admin_panel_settings</mat-icon>
+            Administrateur
+          </mat-option>
+        </mat-select>
+        <mat-icon matSuffix>badge</mat-icon>
+        <mat-error *ngIf="roleInput.invalid && roleInput.touched">
+          La sélection d'un rôle est requise
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Bouton d'inscription -->
+      <button 
+        mat-raised-button 
+        color="primary" 
+        type="submit" 
+        [disabled]="registerForm.invalid || loading" 
+        class="register-button"
+      >
+        <mat-icon>person_add</mat-icon>
+        <span *ngIf="!loading">S'inscrire</span>
+        <span *ngIf="loading">Inscription...</span>
+      </button>
+    </form>
+
+    <!-- Messages de statut -->
+    <mat-error *ngIf="errorMessage" class="error-message">
+      <mat-icon>error_outline</mat-icon>
+      {{ errorMessage }}
+    </mat-error>
+
+    <mat-card *ngIf="successMessage" class="success-message" appearance="outlined">
+      <mat-card-content>
+        <mat-icon color="primary">check_circle</mat-icon>
+        {{ successMessage }}
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Bouton de retour -->
+    <div class="login-section">
+      <p class="login-text">Déjà inscrit ?</p>
+      <a 
+        mat-button 
+        routerLink="/login" 
+        color="accent" 
+        class="login-link"
+      >
+        <mat-icon>login</mat-icon>
+        Se connecter
+      </a>
+    </div>
+  </div>
+
+  <!-- Section décorative -->
+  <div class="decoration-section">
+    <div class="decoration-content">
+      <mat-card class="feature-card">
+        <mat-card-content>
+          <mat-icon class="feature-icon" color="primary">security</mat-icon>
+          <h3>Compte sécurisé</h3>
+          <p>Protection de vos données personnelles</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="feature-card">
+        <mat-card-content>
+          <mat-icon class="feature-icon" color="primary">settings</mat-icon>
+          <h3>Personnalisation</h3>
+          <p>Adapté à vos besoins spécifiques</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="feature-card">
+        <mat-card-content>
+          <mat-icon class="feature-icon" color="primary">group</mat-icon>
+          <h3>Communauté</h3>
+          <p>Rejoignez nos utilisateurs satisfaits</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

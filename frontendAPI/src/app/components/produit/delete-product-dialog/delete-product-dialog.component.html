@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Confirmation de suppression</h2>
+
+<mat-dialog-content>
+  Êtes-vous sûr de vouloir supprimer le produit 
+  <strong>{{ data.productName }}</strong> ?
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Annuler</button>
+  <button mat-raised-button color="warn" (click)="confirm()">
+    Supprimer
+  </button>
+</mat-dialog-actions>

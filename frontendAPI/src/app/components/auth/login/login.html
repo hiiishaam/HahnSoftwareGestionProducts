@@ -1,0 +1,115 @@
+<div class="login-page">
+  <!-- Container principal -->
+  <div class="login-container">
+    <!-- En-tête avec logo -->
+    <div class="login-header">
+      <div class="logo-container">
+        <mat-icon class="logo-icon" color="primary">code</mat-icon>
+        <h1 class="company-name">Hahn Software</h1>
+      </div>
+      <p class="welcome-text">Connectez-vous à votre espace</p>
+    </div>
+
+    <!-- Formulaire de connexion -->
+    <form (ngSubmit)="login()" #loginForm="ngForm" class="login-form">
+      <!-- Champ Email -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Adresse email</mat-label>
+        <input
+          matInput
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="loginData.email"
+          required
+          placeholder="votre@email.com"
+        />
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-hint>Entrez votre adresse email</mat-hint>
+      </mat-form-field>
+
+      <!-- Champ Mot de passe -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Mot de passe</mat-label>
+        <input
+          matInput
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="loginData.password"
+          required
+          placeholder="Votre mot de passe"
+        />
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+
+      <!-- Bouton de connexion -->
+      <button 
+        mat-raised-button 
+        color="primary" 
+        type="submit" 
+        [disabled]="loading" 
+        class="login-button"
+      >
+        <mat-icon>login</mat-icon>
+        <span *ngIf="!loading">Se connecter</span>
+        <span *ngIf="loading">Connexion...</span>
+        <mat-progress-spinner 
+          *ngIf="loading" 
+          mode="indeterminate" 
+          diameter="20" 
+          class="spinner"
+        ></mat-progress-spinner>
+      </button>
+    </form>
+
+    <!-- Lien d'inscription -->
+    <div class="register-section">
+      <p class="register-text">Nouveau sur Hahn Software ?</p>
+      <a 
+        mat-button 
+        [routerLink]="['/register']" 
+        color="accent" 
+        class="register-link"
+      >
+        <mat-icon>person_add</mat-icon>
+        Créer un compte
+      </a>
+    </div>
+
+    <!-- Message d'erreur -->
+    <mat-error *ngIf="errorMessage" class="error-message">
+      <mat-icon>error_outline</mat-icon>
+      {{ errorMessage }}
+    </mat-error>
+  </div>
+
+  <!-- Section décorative -->
+  <div class="decoration-section">
+    <div class="decoration-content">
+      <mat-card class="feature-card">
+        <mat-card-content>
+          <mat-icon class="feature-icon" color="primary">security</mat-icon>
+          <h3>Sécurité garantie</h3>
+          <p>Vos données sont protégées</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="feature-card">
+        <mat-card-content>
+          <mat-icon class="feature-icon" color="primary">speed</mat-icon>
+          <h3>Performance optimale</h3>
+          <p>Interface rapide et fluide</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="feature-card">
+        <mat-card-content>
+          <mat-icon class="feature-icon" color="primary">support</mat-icon>
+          <h3>Support 24/7</h3>
+          <p>Assistance technique disponible</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

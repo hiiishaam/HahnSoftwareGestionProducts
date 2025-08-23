@@ -1,0 +1,72 @@
+/* ====== Titre du dialog ====== */
+h2[mat-dialog-title] {
+  font-size: 22px;
+  font-weight: bold;
+  color: #004080;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* ====== Contenu du dialog ====== */
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px 5px;
+}
+
+/* Champs de formulaire */
+.full-width {
+  width: 100%;
+}
+
+mat-form-field {
+  font-size: 15px;
+}
+
+mat-label {
+  font-weight: 500;
+  color: #004080;
+}
+
+/* Inputs */
+input[matInput] {
+  font-size: 15px;
+  padding: 8px;
+}
+
+/* ====== Actions du dialog ====== */
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Bouton Annuler */
+button[mat-button] {
+  color: #666;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+button[mat-button]:hover {
+  background: #f2f2f2;
+}
+
+/* Bouton Sauvegarder */
+button[color="primary"] {
+  background: #0071c5 !important;
+  color: white !important;
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 6px 16px;
+  transition: 0.3s;
+}
+
+button[color="primary"]:hover {
+  background: #005999 !important;
+}
