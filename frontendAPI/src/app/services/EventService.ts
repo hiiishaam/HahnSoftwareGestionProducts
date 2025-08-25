@@ -39,7 +39,7 @@ export class EventService {
     if (this.isConnected) return; // évite double connexion
 
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('https://localhost:7055/hubs/products') // ✅ URL backend
+      .withUrl('http://localhost:8888/hubs/products') // ✅ URL backend
       .withAutomaticReconnect()
       .build();
 

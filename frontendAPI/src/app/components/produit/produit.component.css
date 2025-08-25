@@ -170,10 +170,8 @@ mat-divider {
 }
 
 .product-name {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 500;
+  color: #666;
+  line-height: 1.4;
 }
 
 .product-icon {
@@ -181,8 +179,8 @@ mat-divider {
 }
 
 .product-price {
-  font-weight: 600;
-  color: #4caf50;
+  color: #666;
+  line-height: 1.4;
 }
 
 .product-description {

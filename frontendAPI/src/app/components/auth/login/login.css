@@ -210,4 +210,18 @@
   .company-name {
     font-size: 22px;
   }
+
+  .decoration-section {
+  display: flex;
+  justify-content: center; /* centre l'image horizontalement */
+  align-items: center;     /* centre l'image verticalement si la section a une hauteur */
+  padding: 2rem;
+}
+
+.decoration-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px; /* optionnel pour arrondir les coins */
+}
+
 }

@@ -10,20 +10,38 @@ using System.Text;
 
 namespace Apibackend.Controllers
 {
+    /// <summary>
+    /// controller pour l'authentification (inscription, connexion, JWT)
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
+        /// <summary>
+        /// injection de la configuration pour accéder aux paramètres JWT
+        /// </summary>
         private readonly IConfiguration _config;
+        /// <summary>
+        /// injection du service utilisateur pour gérer les utilisateurs
+        /// </summary>
         private readonly UserService _userservice;
 
+        /// <summary>
+        /// auth controller constructor
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="userService"></param>
         public AuthController(IConfiguration config, UserService userService)
         {
             _config = config;
             _userservice = userService;
         }
 
-        // -------------------- REGISTER --------------------
+        /// <summary>
+        /// register a new user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost("register")]
         public IActionResult Register([FromBody] User user)
         {
@@ -45,7 +63,11 @@ namespace Apibackend.Controllers
             }
         }
 
-        // -------------------- LOGIN --------------------
+        /// <summary>
+        /// login an existing user and generate JWT
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginModel login)
         {
@@ -84,7 +106,10 @@ namespace Apibackend.Controllers
             }
         }
 
-        // -------------------- ENDPOINT PROTÉGÉ --------------------
+        /// <summary>
+        /// for testing protected route
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("protected")]
         [Authorize]
         public IActionResult Protected()
@@ -92,7 +117,12 @@ namespace Apibackend.Controllers
             return Ok("Vous êtes authentifié !");
         }
 
-        // -------------------- GENERATE JWT --------------------
+        /// <summary>
+        /// générer un token JWT pour l'utilisateur
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="role"></param>
+        /// <returns></returns>
         private string GenerateJwtToken(string email, string role)
         {
             var key = Encoding.ASCII.GetBytes(_config["Jwt:Key"]);

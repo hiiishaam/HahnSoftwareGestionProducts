@@ -316,4 +316,16 @@ mat-hint {
 .mat-form-field.ng-valid.ng-touched .mat-form-field-outline {
   color: #4caf50 !important;
 }
+.expression-container {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.expression-text {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #1976d2; /* bleu primaire Angular Material */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 }

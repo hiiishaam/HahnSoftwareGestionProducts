@@ -1,5 +1,8 @@
 ﻿namespace Apibackend.Models
 {
+    /// <summary>
+    /// model for user registration request payload
+    /// </summary>
     public class RegisterModel
     {
         public string FullName { get; set; } = string.Empty;

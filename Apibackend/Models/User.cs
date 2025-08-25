@@ -2,6 +2,9 @@
 
 namespace Apibackend.Models
 {
+    /// <summary>
+    /// model for user entity  
+    /// </summary>
     public class User
     {
         [Key]

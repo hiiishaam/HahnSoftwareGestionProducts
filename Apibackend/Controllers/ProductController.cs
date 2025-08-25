@@ -6,19 +6,37 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Apibackend.Controllers
 {
+    /// <summary>
+    /// Provides endpoints for managing products in the system.
+    /// </summary>
+    /// <remarks>This controller handles CRUD operations for products, including retrieving all products, 
+    /// retrieving a product by its ID, creating new products, updating existing products, and deleting products. All
+    /// endpoints require authorization and are accessible via the "api/products" route.</remarks>
     [ApiController]
     [Route("api/[controller]")]
     [Authorize]
     public class ProductsController : ControllerBase
     {
+        /// <summary>
+        /// Represents the service used to manage product-related operations.
+        /// </summary>
+        /// <remarks>This field is a dependency injected instance of <see cref="IProductService"/>. It is
+        /// used to perform operations related to products, such as retrieving, creating, or updating product
+        /// data.</remarks>
         private readonly IProductService _productService;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductsController"/> class.
+        /// </summary>
+        /// <param name="productService">The service used to manage product-related operations. This parameter cannot be null.</param>
         public ProductsController(IProductService productService)
         {
             _productService = productService;
         }
 
-        // GET: api/products
+        /// <summary>
+        /// Retrieves all products from the system.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -33,7 +51,11 @@ namespace Apibackend.Controllers
             }
         }
 
-        // GET: api/products/5
+        /// <summary>
+        /// gets a product by its ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public ActionResult GetById(int id)
         {
@@ -50,7 +72,11 @@ namespace Apibackend.Controllers
             }
         }
 
-        // POST: api/products
+        /// <summary>
+        /// creates a new product
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Create(Product product)
         {
@@ -65,7 +91,12 @@ namespace Apibackend.Controllers
             }
         }
 
-        // PUT: api/products/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="product"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public ActionResult Update(int id, Product product)
         {
@@ -82,7 +113,11 @@ namespace Apibackend.Controllers
             }
         }
 
-        // DELETE: api/products/5
+        /// <summary>
+        /// deletes a product by its ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

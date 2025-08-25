@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Apibackend.Services
 {
+    /// <summary>
+    /// service pour gérer les utilisateurs
+    /// </summary>
     public class UserService
     {
         private readonly AppDbContext _db;

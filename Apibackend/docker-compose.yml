@@ -1,4 +1,5 @@
-version: '3.8'
+
+version: "3.9"
 
 services:
   api:
@@ -6,26 +7,25 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "7055:8080"  
+      - "8888:80"
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=Server=db;Database=HahnDb;User Id=sa;Password=CF@!1234FC6549;Trusted_Connection=False;TrustServerCertificate=True;
     depends_on:
       - db
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=db;Database=ApibackendDb;User=sa;Password=ApiFirstJob;
     networks:
-      - backend
+      - app-network
 
   db:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: sqlserver_db
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
     environment:
-      SA_PASSWORD: "ApiFirstJob"
+      SA_PASSWORD: "CF@!1234FC6549"
       ACCEPT_EULA: "Y"
     ports:
-      - "1433:1433"
+    - "1433:1433" 
     networks:
-      - backend
+      - app-network
 
 networks:
-  backend:
+  app-network:
     driver: bridge

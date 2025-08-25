@@ -11,6 +11,9 @@ using static Apibackend.Hubs.Hubs;
 
 namespace testApi
 {
+    /// <summary>
+    /// classe de test unitaire pour ProductService
+    /// </summary>
     [TestClass]
     public class ProductServiceTests
     {
@@ -39,7 +42,9 @@ namespace testApi
 
             _service = new ProductService(_context, _hubContextMock.Object);
         }
-
+        /// <summary>
+        /// test de la méthode CreateProduct du service test si le produit est bien ajouté
+        /// </summary>
         [TestMethod]
         public void CreateProduct_ShouldAddProduct()
         {
@@ -51,7 +56,9 @@ namespace testApi
             Assert.AreEqual("Produit1", result.Name);
             Assert.AreEqual(1, _context.Products.Count());
         }
-
+        /// <summary>
+        /// test de la méthode GetProductById du service test si le produit retourné est correct
+        /// </summary>
         [TestMethod]
         public void GetProductById_ShouldReturnProduct()
         {
@@ -63,7 +70,9 @@ namespace testApi
             Assert.IsNotNull(result);
             Assert.AreEqual("Produit2", result.Name);
         }
-
+        /// <summary>
+        /// test de la méthode UpdateProduct du service test si le produit est bien modifié
+        /// </summary>
         [TestMethod]
         public void UpdateProduct_ShouldModifyProduct()
         {
@@ -77,7 +86,9 @@ namespace testApi
             Assert.AreEqual("Produit3Modifié", result.Name);
             Assert.AreEqual(35, result.Price);
         }
-
+        /// <summary>
+        /// test de la méthode DeleteProduct du service test si le produit est bien supprimé
+        /// </summary>
         [TestMethod]
         public void DeleteProduct_ShouldRemoveProduct()
         {

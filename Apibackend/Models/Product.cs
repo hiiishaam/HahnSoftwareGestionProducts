@@ -2,6 +2,9 @@
 
 namespace Apibackend.Models
 {
+    /// <summary>
+    /// model for product entity
+    /// </summary>
     public class Product
     {
         [Key]

@@ -9,12 +9,17 @@ using System.Collections.Generic;
 
 namespace testApi
 {
+    /// <summary>
+    /// classe de test unitaire pour ProductsController
+    /// </summary>
     [TestClass]
     public class ProductsControllerTests
     {
         private Mock<IProductService> _mockService;
         private ProductsController _controller;
-
+        /// <summary>
+        /// setup avant chaque test 
+        /// </summary>
         [TestInitialize]
         public void Setup()
         {
@@ -22,7 +27,9 @@ namespace testApi
             _mockService = new Mock<IProductService>();
             _controller = new ProductsController(_mockService.Object);
         }
-
+        /// <summary>
+        /// test de la méthode GetAll du controller test si le status code est 200 et si la liste des produits n'est pas vide
+        /// </summary>
         [TestMethod]
         public void GetAll_ShouldReturnOkWithProducts()
         {
@@ -41,8 +48,9 @@ namespace testApi
             Assert.IsNotNull(products);
             Assert.AreEqual(1, products.Count);
         }
-
-
+        /// <summary>
+        /// test de la méthode GetById du controller test si le status code est 200 et si le produit retourné est correct
+        /// </summary>
         [TestMethod]
         public void GetById_ShouldReturnOk_WhenProductExists()
         {
@@ -56,7 +64,9 @@ namespace testApi
             Assert.AreEqual(200, okResult.StatusCode);
             Assert.AreEqual("P1", ((Product)okResult.Value).Name);
         }
-
+        /// <summary>
+        /// test de la méthode GetById du controller test si le status code est 404 quand le produit n'existe pas
+        /// </summary>
         [TestMethod]
         public void GetById_ShouldReturnNotFound_WhenProductDoesNotExist()
         {
@@ -68,7 +78,9 @@ namespace testApi
             Assert.IsNotNull(notFoundResult);
             Assert.AreEqual(404, notFoundResult.StatusCode);
         }
-
+        /// <summary>
+        /// test de la méthode Create du controller test si le status code est 201 et si le produit créé est correct
+        /// </summary>
         [TestMethod]
         public void Create_ShouldReturnCreatedProduct()
         {
@@ -82,7 +94,9 @@ namespace testApi
             Assert.AreEqual(201, createdResult.StatusCode);
             Assert.AreEqual(product, createdResult.Value);
         }
-
+        /// <summary>
+        /// test de la méthode Update du controller test si le status code est 200 et si le produit modifié est correct
+        /// </summary>
         [TestMethod]
         public void Update_ShouldReturnOk_WhenProductExists()
         {
@@ -96,7 +110,9 @@ namespace testApi
             Assert.AreEqual(200, okResult.StatusCode);
             Assert.AreEqual("P2Modifié", ((Product)okResult.Value).Name);
         }
-
+        /// <summary>
+        /// test de la méthode Update du controller test si le status code est 404 quand le produit n'existe pas
+        /// </summary>
         [TestMethod]
         public void Update_ShouldReturnNotFound_WhenProductDoesNotExist()
         {
@@ -109,7 +125,9 @@ namespace testApi
             Assert.IsNotNull(notFoundResult);
             Assert.AreEqual(404, notFoundResult.StatusCode);
         }
-
+        /// <summary>
+        /// test de la méthode Delete du controller test si le status code est 200 et si le message de succès est correct
+        /// </summary>
         [TestMethod]
         public void Delete_ShouldReturnOkMessage_WhenProductDeleted()
         {
@@ -128,11 +146,9 @@ namespace testApi
             Assert.IsNotNull(response);
             Assert.AreEqual("Produit supprimé avec succès", response.Message);
         }
-
-
-
-
-
+        /// <summary>
+        /// test de la méthode Delete du controller test si le status code est 404 quand le produit n'existe pas
+        /// </summary>
         [TestMethod]
         public void Delete_ShouldReturnNotFound_WhenProductNotExist()
         {
